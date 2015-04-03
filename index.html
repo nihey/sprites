@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sprite</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/sprite.css">
+  </head>
+  <body>
+    <img id="image" src="img/sprite.png" hidden>
+    <canvas id="canvas"></canvas>
+
+    <!-- Scripts -->
+    <script id="canvas" src="js/sprite.js"></script>
+    <script>
+      var canvas = document.getElementById('canvas');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      window.onresize = function() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      };
+
+      var sprite = new Sprite({
+        canvas: document.getElementById('canvas'),
+        image: document.getElementById('image'),
+        rows: 4,
+        columns: 3,
+        columnFrequency: 1,
+      });
+
+      function loop() {
+        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        sprite.draw(0, 0);
+      }
+      setInterval(loop, 200);
+    </script>
+  </body>
+</html>
