@@ -18,6 +18,12 @@ function Sprite(options) {
   this.rowDirection = options.rowDirection || 1;
   this.columnDirection = options.rowDirection || 1;
 
+  var blockWidth = this.image.width / this.columns;
+  var blockHeight = this.image.height / this.rows;
+
+  this.width = options.width || blockWidth;
+  this.height = options.height || blockHeight;
+
   this._count = 0;
 }
 
@@ -62,7 +68,7 @@ Sprite.prototype.draw = function(x, y) {
 
   var clip = this._getClipRectangle();
   this.context.drawImage(this.image, clip.x, clip.y, clip.width, clip.height,
-                         x, y, clip.width, clip.height);
+                         x, y, this.width, this.height);
 
   this._count += 1;
 }
