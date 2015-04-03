@@ -1,0 +1,24 @@
+{
+  "name": "sprite-js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/nihey/sprites",
+  "authors": [
+    "Nihey Luz Takizawa <nihey.takizawa@gmail.com>"
+  ],
+  "description": "A very lightweight library to handle Sprites on HTML Canvas",
+  "main": "dist/sprite.min.js",
+  "keywords": [
+    "sprites",
+    "sprite",
+    "canvas",
+    "html5"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
