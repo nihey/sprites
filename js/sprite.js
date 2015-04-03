@@ -12,6 +12,12 @@ function Sprite(options) {
   this.rowFrequency = options.rowFrequency || 0;
   this.columnFrequency = options.columnFrequency || 0;
 
+  this.rowCycle = options.rowCycle || false;
+  this.columnCycle = options.columnCycle || false;
+
+  this.rowDirection = options.rowDirection || 1;
+  this.columnDirection = options.rowDirection || 1;
+
   this._count = 0;
 }
 
@@ -21,7 +27,16 @@ function Sprite(options) {
 
 Sprite.prototype._updateSprite = function(dimension) {
   if (this._count % this[dimension + 'Frequency'] === 0) {
-    this[dimension + 'Index'] += 1;
+    this[dimension + 'Index'] += this[dimension + 'Direction'];
+
+    // Revert the direction when the dimension index is at the dimension limits
+    // (zero or length - 1)
+    if ((!this[dimension + 'Cycle']) &&
+        ((this[dimension + 'Index'] === (this[dimension + 's'] - 1)) ||
+         (this[dimension + 'Index'] === 0))) {
+      this[dimension + 'Direction'] *= -1;
+      return;
+    }
     this[dimension + 'Index'] = this[dimension + 'Index'] % this[dimension + 's'];
   }
 }
