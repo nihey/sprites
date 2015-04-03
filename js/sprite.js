@@ -24,7 +24,7 @@ function Sprite(options) {
   this.width = options.width || blockWidth;
   this.height = options.height || blockHeight;
 
-  this._count = 0;
+  this._count = 1;
 }
 
 /*
