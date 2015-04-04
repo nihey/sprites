@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sprite</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
+    <link rel="stylesheet" href="css/sprite.css">
+  </head>
+  <body>
+    <h2>Sprite</h2>
+    <h5>A very lightweight library to handle sprites on HTML Canvas</h5>
+    <p>
+      All of the codes above use a chunk of code like this to render the code
+      on loop:
+    </p>
+    <pre><code class="javascript">
+  var canvas = sprite.canvas;
+  function loop() {
+    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+    sprite.draw(0, 0);
+  }
+  setInterval(loop, 200);
+    </code></pre>
+
+    <div class="sprite-demo" data-rows="4" data-columns="3"
+         data-column-frequency="1" interval="150">
+      <img src="img/pan.png">
+      <canvas></canvas>
+    </div>
+
+    <pre><code class="javascript">
+  var sprite = new Sprite({
+    canvas: document.getElementById('canvas'),
+    image: document.getElementById('image'),
+    rows: 4,
+    columns: 3,
+    columnFrequency: 1,
+  });
+    </code></pre>
+
+    <div class="sprite-demo" data-rows="5" data-columns="6"
+      data-row-frequency="6" data-column-frequency="1" interval="25"
+      data-row-cycle="true" data-column-cycle="true">
+      <img src="img/runner.png">
+      <canvas></canvas>
+    </div>
+
+    <pre><code class="javascript">
+  var sprite = new Sprite({
+    canvas: document.getElementById('canvas'),
+    image: document.getElementById('image'),
+    rows: 5,
+    columns: 6,
+    rowFrequency: 1,
+    columnFrequency: 6,
+    rowCycle: true,
+    columnCycle true,
+  });
+    </code></pre>
+
+    <!-- Scripts -->
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script src="js/sprite.min.js"></script>
+    <script>
+      function initSprite(options) {
+        var sprite = new Sprite(options);
+
+        var canvas = sprite.canvas;
+        var maxDimension = Math.max(sprite.image.width, sprite.image.height) / 2;
+        function loop() {
+          canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+          sprite.draw(maxDimension - (sprite.width / 2),
+                      maxDimension - (sprite.height / 2));
+        }
+        setInterval(loop, options.interval);
+      }
+
+      $(document).ready(function() {
+        hljs.initHighlighting();
+        $('.sprite-demo').each(function(index, object) {
+          var $canvas = $(object).find('canvas');
+          var $image = $(object).find('img');
+          var maxDimension = Math.max($image.width(), $image.height());
+
+          $canvas[0].width = maxDimension;
+          $canvas[0].height = maxDimension;
+
+          initSprite({
+            canvas: $canvas[0],
+            image: $image[0],
+            rows: $(object).attr('data-rows'),
+            columns: $(object).attr('data-columns'),
+            rowFrequency: $(object).attr('data-row-frequency'),
+            columnFrequency: $(object).attr('data-column-frequency'),
+            rowCycle: $(object).attr('data-row-cycle'),
+            columnCycle: $(object).attr('data-column-cycle'),
+            interval: $(object).attr('interval'),
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
