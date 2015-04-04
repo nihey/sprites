@@ -26,6 +26,15 @@ canvas, pre, img {
   box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
+.footer {
+  font-size: 13px;
+  padding: 25px;
+}
+
+.footer > a {
+  text-decoration: none;
+}
+
 .hljs {
   background: #FFF;
 }
