@@ -6,7 +6,11 @@ Sprites is a very lightweight JavaScript library to run sprites on HTML Canvas (
 
 You can easily get it from [bower](https://github.com/bower/bower):
 ```
-$ bower install sprites-js --save
+$ bower install sprite --save
+```
+Or use [cdnjs](https://cdnjs.com/):
+```
+<script src="//cdnjs.cloudflare.com/ajax/libs/sprite-js/0.1.0/sprite.min.js"></script>
 ```
 
 # Usage
