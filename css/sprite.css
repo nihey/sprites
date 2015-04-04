@@ -26,6 +26,11 @@ canvas, pre, img {
   box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
+a[href][name] {
+  text-decoration: none;
+  color: #000;
+}
+
 .footer {
   font-size: 13px;
   padding: 25px;
