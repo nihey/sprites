@@ -64,6 +64,23 @@
   })
     </code></pre>
 
+    <p>
+      After that, you can draw your sprite
+    </p>
+    <pre><code class="javascript">
+  // x, y are the coordinates where the sprite should be drawed on the canvas
+  sprite.draw(x, y)
+    </code></pre>
+
+    <p>
+      And you can also change the sprite properties dynamically
+    </p>
+    <pre><code class="javascript">
+  sprite.rowFrequency = 20;
+  sprite.rowIndex = 1;
+  (...)
+    </code></pre>
+
     <h4>Examples</h4>
     <p>
       All of the codes above use a chunk of code like this to render the code
@@ -126,7 +143,7 @@
   });
     </code></pre>
 
-    <!-- Forke On GitHub ribbon (http://codepo8.github.io/css-fork-on-github-ribbon/) -->
+    <!-- Fork On GitHub ribbon (http://codepo8.github.io/css-fork-on-github-ribbon/) -->
     <span id="forkongithub">
       <a href="https://github.com/yiom/sketchpad/blob/gh-pages/index.html">
         Fork me on GitHub
@@ -186,7 +203,7 @@
               adjust: !$(object).attr('no-adjust'),
             });
           };
-          $image.one(imageLoad).each(imageLoad);
+          $image.one('load', imageLoad).each(imageLoad);
         });
       });
     </script>
