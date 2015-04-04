@@ -138,22 +138,28 @@
         $('.sprite-demo').each(function(index, object) {
           var $canvas = $(object).find('canvas');
           var $image = $(object).find('img');
-          var maxDimension = Math.max($image.width(), $image.height());
+          var imageLoad = function() {
+            if (!$image[0].complete) {
+              return;
+            }
+            var maxDimension = Math.max($image.width(), $image.height());
 
-          $canvas[0].width = maxDimension;
-          $canvas[0].height = maxDimension;
+            $canvas[0].width = maxDimension;
+            $canvas[0].height = maxDimension;
 
-          initSprite({
-            canvas: $canvas[0],
-            image: $image[0],
-            rows: $(object).attr('data-rows'),
-            columns: $(object).attr('data-columns'),
-            rowFrequency: $(object).attr('data-row-frequency'),
-            columnFrequency: $(object).attr('data-column-frequency'),
-            rowCycle: $(object).attr('data-row-cycle'),
-            columnCycle: $(object).attr('data-column-cycle'),
-            interval: $(object).attr('interval'),
-          });
+            initSprite({
+              canvas: $canvas[0],
+              image: $image[0],
+              rows: $(object).attr('data-rows'),
+              columns: $(object).attr('data-columns'),
+              rowFrequency: $(object).attr('data-row-frequency'),
+              columnFrequency: $(object).attr('data-column-frequency'),
+              rowCycle: $(object).attr('data-row-cycle'),
+              columnCycle: $(object).attr('data-column-cycle'),
+              interval: $(object).attr('interval'),
+            });
+          };
+          $image.one(imageLoad).each(imageLoad);
         });
       });
     </script>
