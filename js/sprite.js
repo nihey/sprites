@@ -13,8 +13,8 @@
     this.rowFrequency = options.rowFrequency || 0;
     this.columnFrequency = options.columnFrequency || 0;
 
-    this.rowCycle = options.rowCycle || false;
-    this.columnCycle = options.columnCycle || false;
+    this.rowCircular = options.rowCircular || false;
+    this.columnCircular = options.columnCircular || false;
 
     this.rowDirection = options.rowDirection || 1;
     this.columnDirection = options.rowDirection || 1;
@@ -38,7 +38,7 @@
 
       // Revert the direction when the dimension index is at the dimension limits
       // (zero or length - 1)
-      if ((!this[dimension + 'Cycle']) &&
+      if ((!this[dimension + 'Circular']) &&
           ((this[dimension + 'Index'] === (this[dimension + 's'] - 1)) ||
            (this[dimension + 'Index'] === 0))) {
         this[dimension + 'Direction'] *= -1;
