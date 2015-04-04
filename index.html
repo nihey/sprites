@@ -17,7 +17,7 @@
       <canvas width="36" height="36"></canvas>
     </div>
     <div class="sprite-demo inline" data-rows="4" data-columns="3"
-         data-column-frequency="1" interval="150" data-row-index="3"
+         data-column-frequency="1" interval="150" data-row-index="0"
          no-adjust="true">
       <div style="display: none"><img src="img/pan.png"></div>
       <canvas width="36" height="36"></canvas>
@@ -55,8 +55,8 @@
     columnIndex: 0,    // Where to start drawing the column? (d 0)
     rowFrequency: 1,   // After how many draw cycles row is updated? (d 0)
     columnFrequency: 1,// After how many draw cycles column is updated? (d 0)
-    rowCycle: true,    // cycle true  -> 0, 1, 2, 0, 1, 2, 0, 1, 2... (d fls)
-    columnCycle: false,// cycle false -> 0, 1, 2, 1, 0, 1, 2, 1, 0... (d fls)
+    rowCircular: true,    // true  -> 0, 1, 2, 0, 1, 2, 0, 1, 2... (d fls)
+    columnCircular: true, // false -> 0, 1, 2, 1, 0, 1, 2, 1, 0... (d fls)
     rowDirection: 4,   // row increment (d 1)
     columnDirection: 4,// column increment (d 1)
     width: 100,        // Drawing width (d (image.width / columns))
@@ -119,7 +119,7 @@
 
     <div class="sprite-demo" data-rows="5" data-columns="6"
       data-row-frequency="6" data-column-frequency="1" interval="25"
-      data-row-cycle="true" data-column-cycle="true">
+      data-row-circular="true" data-column-circular="true">
       <img src="img/runner.png">
       <canvas></canvas>
       <div class="source">
@@ -138,8 +138,8 @@
     columns: 6,
     rowFrequency: 1,
     columnFrequency: 6,
-    rowCycle: true,
-    columnCycle true,
+    rowCircular: true,
+    columnCircular: true,
   });
     </code></pre>
 
@@ -206,8 +206,8 @@
               rowIndex: $(object).attr('data-row-index'),
               rowFrequency: $(object).attr('data-row-frequency'),
               columnFrequency: $(object).attr('data-column-frequency'),
-              rowCycle: $(object).attr('data-row-cycle'),
-              columnCycle: $(object).attr('data-column-cycle'),
+              rowCircular: $(object).attr('data-row-circular'),
+              columnCircular: $(object).attr('data-column-circular'),
               interval: $(object).attr('interval'),
               adjust: !$(object).attr('no-adjust'),
             });
