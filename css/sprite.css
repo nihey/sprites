@@ -28,3 +28,7 @@ canvas, pre, img {
 .sprite-demo > * {
   margin: 10px 10px;
 }
+
+.sprite-demo > .source {
+  font-size: 11px;
+}
