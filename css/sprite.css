@@ -10,6 +10,11 @@ pre {
   text-align: left;
 }
 
+p {
+  display: inline-block;
+  max-width: 700px;
+}
+
 canvas, pre, img {
   margin: 10px auto;
   padding: 10px;
@@ -31,4 +36,8 @@ canvas, pre, img {
 
 .sprite-demo > .source {
   font-size: 11px;
+}
+
+.doc-item {
+  text-align: left;
 }

@@ -10,6 +10,43 @@
   <body>
     <h2>Sprite</h2>
     <h5>A very lightweight library to handle sprites on HTML Canvas</h5>
+    <h4>Installation</h4>
+    <p>
+      You can easily get it from <a href="http://bower.io/">bower</a>
+    </p>
+    <pre><code>$ bower install sprites-js</code></pre>
+
+    <h4>Usage</h4>
+    <p>
+      Basically you can build a sprite by instantiating the Sprite class
+    </p>
+    <pre><code class="javascript">var sprite = new Sprite(options)</code></pre>
+
+    <p>
+      You should pass some arguments to Sprite, so that it can know:
+    </p>
+    <pre><code class="javascript">
+  // (r) = required
+  // (d N) = defaults to N
+  var sprite = new Sprite({
+    canvas: document.getElementById('canvas'), // Where to draw? (r)
+    image: document.getElementById('image'),   // What image to use? (r)
+    rows: 4,           // How many rows are there in the image?
+    columns: 3,        // How many columns are there in the image?
+    rowIndex: 0,       // Where to start drawing the row? (d 0)
+    columnIndex: 0,    // Where to start drawing the column? (d 0)
+    rowFrequency: 1,   // After how many draw cycles row is updated? (d 0)
+    columnFrequency: 1,// After how many draw cycles column is updated? (d 0)
+    rowCycle: true,    // cycle true  -> 0, 1, 2, 0, 1, 2, 0, 1, 2... (d fls)
+    columnCycle: false,// cycle false -> 0, 1, 2, 1, 0, 1, 2, 1, 0... (d fls)
+    rowDirection: 4,   // row increment (d 1)
+    columnDirection: 4,// column increment (d 1)
+    width: 100,        // Drawing width (d (image.width / columns))
+    height: 100,       // Drawing height (d (image.height / rows))
+  })
+    </code></pre>
+
+    <h4>Examples</h4>
     <p>
       All of the codes above use a chunk of code like this to render the code
       on loop:
