@@ -38,6 +38,10 @@ canvas, pre, img {
   font-size: 11px;
 }
 
+.inline {
+  display: inline;
+}
+
 .doc-item {
   text-align: left;
 }

@@ -10,6 +10,24 @@
   <body>
     <h2>Sprite</h2>
     <h5>A very lightweight library to handle sprites on HTML Canvas</h5>
+    <div class="sprite-demo inline" data-rows="4" data-columns="3"
+         data-column-frequency="1" interval="150" data-row-index="1"
+         no-adjust="true">
+      <img src="img/pan.png" hidden>
+      <canvas width="36" height="36"></canvas>
+    </div>
+    <div class="sprite-demo inline" data-rows="4" data-columns="3"
+         data-column-frequency="1" interval="150" data-row-index="3"
+         no-adjust="true">
+      <img src="img/pan.png" hidden>
+      <canvas width="36" height="36"></canvas>
+    </div>
+    <div class="sprite-demo inline" data-rows="4" data-columns="3"
+         data-column-frequency="1" interval="150" data-row-index="2"
+         no-adjust="true">
+      <img src="img/pan.png" hidden>
+      <canvas width="36" height="36"></canvas>
+    </div>
     <h4>Installation</h4>
     <p>
       You can easily get it from <a href="http://bower.io/">bower</a>
@@ -127,8 +145,13 @@
         var maxDimension = Math.max(sprite.image.width, sprite.image.height) / 2;
         function loop() {
           canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
-          sprite.draw(maxDimension - (sprite.width / 2),
-                      maxDimension - (sprite.height / 2));
+          if (options.adjust) {
+            sprite.draw(maxDimension - (sprite.width / 2),
+                        maxDimension - (sprite.height / 2));
+          }
+          else {
+            sprite.draw(0, 0);
+          }
         }
         setInterval(loop, options.interval);
       }
@@ -144,19 +167,23 @@
             }
             var maxDimension = Math.max($image.width(), $image.height());
 
-            $canvas[0].width = maxDimension;
-            $canvas[0].height = maxDimension;
+            if (!$(object).attr('no-adjust')) {
+              $canvas[0].width = maxDimension;
+              $canvas[0].height = maxDimension;
+            }
 
             initSprite({
               canvas: $canvas[0],
               image: $image[0],
               rows: $(object).attr('data-rows'),
               columns: $(object).attr('data-columns'),
+              rowIndex: $(object).attr('data-row-index'),
               rowFrequency: $(object).attr('data-row-frequency'),
               columnFrequency: $(object).attr('data-column-frequency'),
               rowCycle: $(object).attr('data-row-cycle'),
               columnCycle: $(object).attr('data-column-cycle'),
               interval: $(object).attr('interval'),
+              adjust: !$(object).attr('no-adjust'),
             });
           };
           $image.one(imageLoad).each(imageLoad);
