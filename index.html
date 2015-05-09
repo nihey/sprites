@@ -116,9 +116,7 @@
   var sprite = new Sprite({
     canvas: document.getElementById('canvas'),
     image: document.getElementById('image'),
-    rows: 4,
-    columns: 3,
-    columnFrequency: 1,
+    <span></span>
   });
     </code></pre>
 
@@ -139,12 +137,7 @@
   var sprite = new Sprite({
     canvas: document.getElementById('canvas'),
     image: document.getElementById('image'),
-    rows: 5,
-    columns: 6,
-    rowFrequency: 1,
-    columnFrequency: 6,
-    rowCircular: true,
-    columnCircular: true,
+    <span></span>
   });
     </code></pre>
 
@@ -177,6 +170,7 @@
     <!-- Scripts -->
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script src="js/jquery.beautify.min.js"></script>
     <script src="js/sprite.min.js"></script>
     <script>
       function initSprite(options) {
@@ -198,7 +192,10 @@
       }
 
       $(document).ready(function() {
-        hljs.initHighlighting();
+        $('pre code').each(function(i, block) {
+          (!$(block).find('span').length) && hljs.highlightBlock(block);
+        });
+
         $('.sprite-demo').each(function(index, object) {
           var $canvas = $(object).find('canvas');
           var $image = $(object).find('img');
@@ -213,7 +210,7 @@
               $canvas[0].height = maxDimension;
             }
 
-            initSprite({
+            var options = {
               canvas: $canvas[0],
               image: $image[0],
               rows: $(object).attr('data-rows'),
@@ -225,6 +222,26 @@
               columnCircular: $(object).attr('data-column-circular'),
               interval: $(object).attr('interval'),
               adjust: !$(object).attr('no-adjust'),
+            };
+            initSprite(options);
+
+            // Filter only attrs that matter on sprite creation
+            var attrs = [];
+            for(var key in options) {
+              var spriteAttr = ['rows', 'columns', 'rowIndex', 'rowFrequency',
+                                'columnFrequency', 'rowCircular',
+                                'columnCircular'].indexOf(key) >= 0;
+              if (options[key] && spriteAttr) {
+                attrs.push(key + ': ' + options[key]);
+              }
+            }
+            // Add code to the example
+            $(object).next().find('code span').replaceWith(attrs.join(','));
+            // Beautify it
+            $(object).next().find('code').beautify({indent_size: 2});
+            // And apply highlighting
+            $(object).next().find('code').each(function(i, block) {
+              hljs.highlightBlock(block);
             });
           };
           $image.one('load', imageLoad).each(imageLoad);
