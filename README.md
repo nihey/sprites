@@ -20,7 +20,7 @@ Basically you can build a sprite by instantiating the Sprite class
 var sprite = new Sprite(options)
 ```
 You should pass some arguments to Sprite, so that it can know:
-```
+```javascript
   // (r) = required
   // (d N) = defaults to N
   var sprite = new Sprite({
@@ -41,7 +41,7 @@ You should pass some arguments to Sprite, so that it can know:
   })
 ```
 After that, you can draw your sprite
-```
+```javascript
 // x, y are the coordinates where the sprite should be drawed on the canvas
 sprite.draw(x, y)
 ```
